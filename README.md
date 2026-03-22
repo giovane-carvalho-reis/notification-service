@@ -115,3 +115,5 @@ docker exec -it payment-rabbitmq rabbitmqadmin publish \
 ```txt
 {"level":30,"time":"2026-03-15T12:00:00.000Z","msg":"Email payload gerado","routingKey":"payment.confirmed","emailPayload":{"orderId":"12345","paymentMethod":"pix","status":"confirmed","processedAt":"2026-03-15T10:30:00+00:00","assunto":"Pagamento confirmado","mensagem":"Seu pagamento foi realizado com sucesso para a ordem numero 12345 via pix. Processado em 2026-03-15T10:30:00+00:00"},"prettyPayload":"{\n  \"orderId\": \"12345\",\n  \"paymentMethod\": \"pix\",\n  \"status\": \"confirmed\",\n  \"processedAt\": \"2026-03-15T10:30:00+00:00\",\n  \"assunto\": \"Pagamento confirmado\",\n  \"mensagem\": \"Seu pagamento foi realizado com sucesso para a ordem numero 12345 via pix. Processado em 2026-03-15T10:30:00+00:00\"\n}"}
 ```
+
+
