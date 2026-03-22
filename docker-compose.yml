@@ -10,6 +10,8 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+    networks:
+      - shared-network
 
   app:
     build:
@@ -22,3 +24,10 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    name: microservices-network
+    driver: bridge

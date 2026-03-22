@@ -42,6 +42,8 @@ LOG_LEVEL=info
 docker compose up --build
 ```
 
+Os containers deste projeto sao conectados na rede Docker compartilhada `microservices-network`, permitindo comunicacao com outros projetos em containers na mesma rede.
+
 RabbitMQ Management UI:
 
 - URL: http://localhost:15672
