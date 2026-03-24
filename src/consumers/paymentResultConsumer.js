@@ -13,7 +13,6 @@ async function startPaymentResultConsumer() {
   if (!exchangeName) {
     throw new Error('Variavel RABBITMQ_EXCHANGE nao configurada.');
   }
-
   const { connection, channel } = await createRabbitConnectionAndChannel();
 
   await channel.assertQueue(queueName, { durable: true });
