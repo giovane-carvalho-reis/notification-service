@@ -1,26 +1,9 @@
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: payment-rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 20
-    networks:
-      - shared-network
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: payment-result-consumer
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
     env_file:
       - .env
     restart: unless-stopped
