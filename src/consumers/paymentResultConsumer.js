@@ -41,15 +41,26 @@ async function startPaymentResultConsumer() {
       const content = message.content.toString();
       const payload = JSON.parse(content);
 
+      logger.info(
+        {
+          queueName,
+          exchangeName,
+          routingKey,
+          rawMessage: content
+        },
+        `Mensagem consumida da fila. Exchange: ${exchangeName}, Routing Key: ${routingKey}`
+      );
+
       const emailPayload = buildEmailPayload(routingKey, payload);
 
       logger.info(
         {
+          exchangeName,
           routingKey,
           emailPayload,
           prettyPayload: JSON.stringify(emailPayload, null, 2)
         },
-        'Email payload gerado'
+        `Email payload gerado (pronto para envio). Exchange: ${exchangeName}, Routing Key: ${routingKey}`
       );
     } catch (error) {
       logger.error({ error }, 'Falha ao processar mensagem');
