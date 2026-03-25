@@ -13,8 +13,11 @@ async function startPaymentResultConsumer() {
   if (!exchangeName) {
     throw new Error('Variavel RABBITMQ_EXCHANGE nao configurada.');
   }
+
   const { connection, channel } = await createRabbitConnectionAndChannel();
 
+  // Garante que a exchange existe antes de fazer o bind
+  await channel.assertExchange(exchangeName, 'direct', { durable: true });
   await channel.assertQueue(queueName, { durable: true });
   await channel.bindQueue(queueName, exchangeName, PAYMENT_CONFIRMED_ROUTING_KEY);
   await channel.bindQueue(queueName, exchangeName, PAYMENT_FAILED_ROUTING_KEY);
